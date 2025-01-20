@@ -1,7 +1,7 @@
 // =======================
 // 1. IMPORTS
 // =======================
-const express = require('express');
+const express = require("express");
 const app = express();
 const methodOverride = require("method-override");
 const morgan = require("morgan");
@@ -13,6 +13,8 @@ const passUserToView=require("./middleware/pass-user-to-view.js")
 //const coursesController = require("./controllers/courses.js");
 const personController = require("./controllers/person.js")
 const authContorller=require("./controllers/auth.js")
+const enrollmentController = require("./controllers/enrollment.js");
+
 // =======================
 // 2. MIDDLEWARE
 // =======================
@@ -20,16 +22,17 @@ app.use(express.urlencoded({ extended: false })); // parses the request body. Ne
 app.use(methodOverride("_method")); // Will change the methods for
 app.use(morgan("dev")); // Logs the requests in the terminal
 
-
 // =======================
 // 3. CONNECTION TO DATABASE
 // =======================
-mongoose.connect(process.env.MONGODB_URI)
-.then(()=>{console.log("Connected to DATABSE")})
-.catch(()=>{console.log("ERROR CONNECTING TO DB OMAR")})
-
-
-
+mongoose
+  .connect(process.env.MONGODB_URI)
+  .then(() => {
+    console.log("Connected to DATABASE");
+  })
+  .catch(() => {
+    console.log("ERROR CONNECTING TO DB OMAR");
+  });
 
 // =======================
 // 4. ROUTES
@@ -44,12 +47,17 @@ app.use("/persons",personController)
 
 
 
+app.get("/", (req, res)=>{
+  res.send("Hello to inistitution database");
+});
 
+
+app.use("/courses", coursesController);
 
 
 // =======================
 // 5. LISTENING ON PORT 3000
 // =======================
 app.listen(3000, () => {
-  console.log('Listening on port 3000');
+  console.log("Listening on port 3000");
 });
