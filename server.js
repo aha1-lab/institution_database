@@ -34,6 +34,12 @@ mongoose.connect(process.env.MONGODB_URI)
 // 4. ROUTES
 // =======================
 
+
+app.get("/", (req, res)=>{
+  res.send("Hello to inistitution database");
+});
+
+
 app.use("/courses", coursesController);
 
 
