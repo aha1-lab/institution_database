@@ -34,8 +34,14 @@ mongoose
 // 4. ROUTES
 // =======================
 
-// app.use("/courses", coursesController);
-app.use("/enrollments", enrollmentController);
+
+app.get("/", (req, res)=>{
+  res.send("Hello to inistitution database");
+});
+
+
+app.use("/courses", coursesController);
+
 
 // =======================
 // 5. LISTENING ON PORT 3000

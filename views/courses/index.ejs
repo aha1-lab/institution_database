@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h1>COURSE CATALOG</h1>
+    <h2>Part-time or full-time. Bootcamp. Short course. Workshop. Choose your own tech adventure.</h2>
+    <% courses.forEach((course)=>{%>
+        <h3><a href="/courses/<%=course._id%>"><%=course.name%></a></h3>
+        <li><%=course.description%></li>
+        <li>📍<%=course.studyType%></li>
+        <li>🕗<%=course.durations%> weeks</li>
+    <%})%>
+
+    <a href="/courses/new">Add New Course</a>
+</body>
+</html>
