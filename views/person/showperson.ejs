@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1><%= onePerson.firstName%>'s Details</h1>
+    <h3>First name: <%= onePerson.firstName%></h3>
+    <h3>Last name: <%= onePerson.lastName%></h3>
+    <h3>nationality: <%= onePerson.nationality%></h3>
+    <h3>occupation: <%= onePerson.occupation%></h3>
+
+    <form action="/persons/<%=onePerson._id%>?_method=DELETE" method="post">
+        <button>Delete  person</button>
+    </form>
+    <a href="/persons/<%=onePerson._id%>/edit">Edit <%=onePerson.firstName%>'s details</a>
+</body>
+</html>

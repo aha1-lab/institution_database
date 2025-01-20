@@ -5,10 +5,14 @@ const express = require("express");
 const app = express();
 const methodOverride = require("method-override");
 const morgan = require("morgan");
-require("dotenv").config();
-const mongoose = require("mongoose");
-console.log("dev -branch");
-
+require('dotenv').config()
+const mongoose = require("mongoose")
+//console.log("dev -branch")
+const isSignedIn=require("./middleware/is-signed-in.js")
+const passUserToView=require("./middleware/pass-user-to-view.js")
+//const coursesController = require("./controllers/courses.js");
+const personController = require("./controllers/person.js")
+const authContorller=require("./controllers/auth.js")
 const enrollmentController = require("./controllers/enrollment.js");
 
 // =======================
@@ -33,6 +37,14 @@ mongoose
 // =======================
 // 4. ROUTES
 // =======================
+
+//app.use(passUserToView)
+//app.use("/auth",authContorller)
+//app.use(isSignedIn)
+//app.use("/courses", coursesController);
+
+app.use("/persons",personController)
+
 
 
 app.get("/", (req, res)=>{
