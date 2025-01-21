@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inistitution Database</title>
+</head>
+<body>
+    <%- include('./partials/_navbar.ejs') %>
+    <h1>Inistitution Database</h1>
+    <%if (user){%>
+        <a href="/auth/sign-out">Sign Out</a>
+    <%}else{%>
+        <a href="/auth/sign-in">Sign in</a>
+        <a href="/auth/sign-up">Sign up</a>
+    <%}%>
+    
+</body>
+</html>

@@ -6,9 +6,10 @@
     <title>Update Course</title>
 </head>
 <body>
+    <%- include('../partials/_navbar.ejs')%>
     <!-- < %- include('../partials/_navbar.ejs') % > -->
     <h1>Update <%=course.name%></h1>
-    <form action="/courses/<%=course._id%>?_method=PUT" method="POST">
+    <form action="/users/<%=user._id%>/courses/<%=course._id%>?_method=PUT" method="POST">
         <label for="name">Course Name:</label>
         <input type="text" name="name" id="name" value="<%=course.name%>">
 

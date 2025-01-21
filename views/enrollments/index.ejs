@@ -9,42 +9,15 @@
 </head>
 
 <body>
+    <%- include('../partials/_navbar.ejs')%>
     <h1>Enrollment</h1>
-    <form action="/enrollments" method="POST">
-        <label for="student">Student:</label>
-        <select name="student" id="student" required>
-            <% students.forEach((student)=> { %>
-                <option value="<%= student._id %>">
-                    <%= student.firstName %>
-                        <%= student.lastName %>
-                </option>
-                <% }) %>
-        </select>
-        <label for="tutor">Tutor:</label>
-        <select name="tutor" id="tutor" required>
-            <% tutors.forEach((tutor)=> { %>
-                <option value="<%= tutor._id %>">
-                    <%= tutor.firstName %>
-                        <%= tutor.lastName %>
-                </option>
-                <% }) %>
-        </select>
-        <label for="grade">Grade:</label>
-        <input type="text" name="grade" id="grade" required />
-        <label for="startDate">Start Date:</label>
-        <input type="date" name="startDate" id="startDate" required />
-        <label for="endDate">End Date:</label>
-        <input type="date" name="endDate" id="endDate" required />
-        <label for="course">Course:</label>
-        <select name="course" id="course" required>
-            <% courses.forEach((course)=> { %>
-                <option value="<%= course._id %>">
-                    <%= course.name %>
-                </option>
-                <% }) %>
-        </select>
-        <button type="submit">Enroll</button>
-    </form>
+    <% enrollments.forEach((enrollment)=>{%>
+        <li><%=enrollment.student.firstName%></li>
+        <li><%=enrollment.tutor.firstName%></li>
+        <li><%=enrollment.course.name%></li>
+    <%})%>
+
+    <a href="/users/<%=user._id%>/enrollments/new">Add new new enrollment</a>
 </body>
 
 </html>

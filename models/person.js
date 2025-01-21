@@ -4,7 +4,6 @@ const personSchema= new mongoose.Schema({
     firstName:{
         type:String,
         required:true
-
     },
     lastName:{
         type:String,
@@ -21,6 +20,6 @@ const personSchema= new mongoose.Schema({
     }
 })
 
-const Person= mongoose.model("person",personSchema)
+const Person= mongoose.model("Person",personSchema)
 
 module.exports=Person

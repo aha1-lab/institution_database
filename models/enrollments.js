@@ -6,6 +6,11 @@ const enrollmentSchema = new mongoose.Schema({
     ref: "User",
     required: true,
   },
+  tutor: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
   course: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Course",
@@ -13,7 +18,6 @@ const enrollmentSchema = new mongoose.Schema({
   },
   grade: { type: Number, min: 0, max: 100 },
   startDate: { type: Date, required: true },
-  endDate: { type: Date, required: true },
   lastModifiedBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
 });
 

@@ -2,31 +2,55 @@
 const express = require("express");
 const router = express.Router();
 const Enrollment = require("../models/enrollments");
+const Person = require("../models/person.js");
+const Course = require("../models/course.js");
 
 // Create a new enrollment
 router.post("/", async (req, res) => {
   try {
-    const enrollment = new Enrollment(req.body);
-    await enrollment.save();
-    res.status(201).send(enrollment);
-    S;
+
+    req.body.lastModifiedBy = req.session.user._id;
+    await Enrollment.create(req.body);
+    res.redirect(`/users/${req.session.user._id}/enrollments`);
   } catch (error) {
-    res.status(400).send(error.message);
+    console.log(error);
+    res.redirect(`/users/${req.session.user._id}/enrollments`);
   }
 });
 
 // Get all enrollments
 router.get("/", async (req, res) => {
   try {
-    const enrollments = await Enrollment.find()
-      .populate("student", "firstName lastName")
-      .populate("tutor", "firstName lastName")
-      .populate("course", "name");
-    res.render("enrollments/index.ejs", { enrollments });
+    const foundEnrollments = await Enrollment.find().populate("course");
+    
+      console.log(foundEnrollments)
+    res.render("enrollments/index.ejs", {
+       enrollments: foundEnrollments,
+      });
   } catch (error) {
-    res.status(400).send(error.message);
+    console.log(error);
+    res.redirect(`/users/${req.session.user._id}/enrollments`);
   }
 });
+
+
+router.get("/new", async (req, res)=>{
+  try {
+    const foundStudents = await Person.find({occupation : "Student"});
+    const foundTutors = await Person.find({occupation : "Tutor"});
+    const foundCourse = await Course.find();
+    res.render("./enrollments/new.ejs",{
+      students: foundStudents,
+      tutors: foundTutors,
+      courses: foundCourse,
+    });
+  } catch (error) {
+    console.log(error);
+    res.redirect(`/users/${req.session.user._id}/enrollments`);
+  }
+
+});
+
 
 // Get enrollment by ID
 router.get("/:id", async (req, res) => {

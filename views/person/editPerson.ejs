@@ -6,6 +6,7 @@
     <title>Document</title>
 </head>
 <body>
+    <%- include('../partials/_navbar.ejs')%>
     <h1>Edit <%=onePerson.firstName%>'s details</h1>
     <form action="/persons/<%= onePerson._id%>?_method=PUT" method="post">
         <label for="firstname">Enter the first name</label>
