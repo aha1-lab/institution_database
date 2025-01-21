@@ -10,7 +10,7 @@ const mongoose = require("mongoose")
 //console.log("dev -branch")
 const isSignedIn=require("./middleware/is-signed-in.js")
 const passUserToView=require("./middleware/pass-user-to-view.js")
-//const coursesController = require("./controllers/courses.js");
+const coursesController = require("./controllers/courses.js");
 const personController = require("./controllers/person.js")
 const authContorller=require("./controllers/auth.js")
 const enrollmentController = require("./controllers/enrollment.js");
