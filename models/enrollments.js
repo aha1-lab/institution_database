@@ -3,12 +3,12 @@ const mongoose = require("mongoose");
 const enrollmentSchema = new mongoose.Schema({
   student: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
+    ref: "Person",
     required: true,
   },
   tutor: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
+    ref: "Person",
     required: true,
   },
   course: {

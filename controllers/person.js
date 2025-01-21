@@ -1,6 +1,8 @@
-const router=require("express").Router()
+const router=require("express").Router();
 
-const Person=require("../models/person.js")
+const Person = require("../models/person.js");
+const Course = require("../models/course.js");
+const Enrollment = require("../models/enrollments.js");
 
 router.get("/", async(req,res)=>{
     try {
@@ -25,11 +27,14 @@ router.post("/",async(req,res)=>{
 })
 router.get("/:personId", async (req,res)=>{
     try {
-        const currentPerson=await Person.findById(req.params.personId)
-        //const currentPerson=await currentUser.id(req.params.personId)
-        //console.log(currentPerson)
-        //console.log(currentPerson)
-        res.render("person/showperson.ejs",{onePerson:currentPerson})
+        const currentPerson = await Person.findById(req.params.personId)
+        const foundEnrollment = await Enrollment.find({student: req.params.personId}).populate("course");
+        console.log(foundEnrollment);
+
+        res.render("person/showperson.ejs",{
+            onePerson : currentPerson,
+            enrollments : foundEnrollment,
+        });
     } catch (error) {
         console.log(error)
         res.redirect(`/users/${req.session.user._id}/persons`)

@@ -13,10 +13,9 @@
     <h1>Enrollment</h1>
     <form action="/users/<%=user._id%>/enrollments" method="POST">
         <label for="student">Student Name</label>
-        <select name="student" id="student">
+        <select name="student" id="student" multiple>
             <% students.forEach((student)=>{%>
                 <option value="<%=student._id%>"><%=student.firstName%> <%=student.lastName%></option>
-            
             <%})%>
         </select>
 

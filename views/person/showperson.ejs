@@ -13,6 +13,10 @@
     <h3>nationality: <%= onePerson.nationality%></h3>
     <h3>occupation: <%= onePerson.occupation%></h3>
 
+    <h1>List Of courses</h1>
+    <% enrollments.forEach((enrollment)=>{%>
+        <li><%=enrollment.course.name%></li>
+    <%})%>
     <form action="/users/<%=user._id%>/persons/<%=onePerson._id%>?_method=DELETE" method="post">
         <button>Delete  person</button>
     </form>

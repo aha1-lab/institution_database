@@ -1,57 +1,33 @@
+<!-- views/enrollment.ejs -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>Edit Recipe</title>
-    <link rel="stylesheet" href="/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enrollment</title>
 </head>
 
 <body>
     <%- include('../partials/_navbar.ejs')%>
-    <div class="container">
-        <h1>Edit Recipe</h1>
+    <h1>Enrollment</h1>
+    <form action="/users/<%=user._id%>/enrollments/<%=enrollment._id%>?_method=PUT" method="POST">
+        <label for="student">Student Name:  </label>
+        <label for="student">enrollment.student.firstName</label>
 
-        <form action="/recipes/<%= recipe._id %>?_method=PUT" method="POST">
-            <div>
-                <label for="title">Title:</label>
-                <input type="text" id="title" name="title" value="<%= recipe.title %>" required>
-            </div>
+        <label for="tutor">Tutor Name:  </label>
+        <label for="student">enrollment.tutor.firstName</label>
 
-            <div>
-                <label for="ingredients">Ingredients (comma-separated):</label>
-                <textarea id="ingredients" name="ingredients" required><%= recipe.ingredients.join(', ') %></textarea>
-            </div>
+        <label for="course">Course Name:  </label>
+        <label for="course">enrollment.course.name</label>
 
-            <div>
-                <label for="instructions">Instructions:</label>
-                <textarea id="instructions" name="instructions" required><%= recipe.instructions %></textarea>
-            </div>
+        <label for="startDate">Start Date</label>
 
-            <div>
-                <label for="cookingTime">Cooking Time (minutes):</label>
-                <input type="number" id="cookingTime" name="cookingTime" value="<%= recipe.cookingTime %>" required>
-            </div>
+        <label for="grade">Add grade</label>
+        <input type="number" name="grade" id="grade" value="enrollment.grade">
 
-            <div>
-                <label for="difficulty">Difficulty:</label>
-                <select id="difficulty" name="difficulty">
-                    <option value="Easy" <%=recipe.difficulty==='Easy' ? 'selected' : '' %>>Easy</option>
-                    <option value="Medium" <%=recipe.difficulty==='Medium' ? 'selected' : '' %>>Medium</option>
-                    <option value="Hard" <%=recipe.difficulty==='Hard' ? 'selected' : '' %>>Hard</option>
-                </select>
-            </div>
-
-            <div>
-                <label for="image">Image URL:</label>
-                <input type="url" id="image" name="image" value="<%= recipe.image %>">
-            </div>
-
-            <div class="form-actions">
-                <button type="submit">Update Recipe</button>
-                <a href="/recipes/<%= recipe._id %>">Cancel</a>
-            </div>
-        </form>
-    </div>
+        <button type="submit">Update Grade</button>
+    </form>
 </body>
 
 </html>
