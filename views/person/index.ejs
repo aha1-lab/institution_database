@@ -9,10 +9,10 @@
     <%- include('../partials/_navbar.ejs')%>
     <h1>All of the people enrolled are bellow:</h1>
 
-    <a href="/persons/newPerson">Add a new person</a>
+    <a href="/users/<%=user._id%>/persons/newPerson">Add a new person</a>
     
     <% Person.forEach((onePerson)=>{ %>
-        <a href="/persons/<%=onePerson._id%>"><li><%=onePerson.firstName%> <%=onePerson.lastName%> <%=onePerson.occupation%></li></a>
+        <a href="/users/<%=user._id%>/persons/<%=onePerson._id%>"><li><%=onePerson.firstName%> <%=onePerson.lastName%> <%=onePerson.occupation%></li></a>
    <% })%>
 </body>
 </html>

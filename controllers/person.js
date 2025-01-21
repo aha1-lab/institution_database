@@ -6,9 +6,10 @@ router.get("/", async(req,res)=>{
     try {
 
         const allPersons= await Person.find()
-        res.render("person/index.ejs",{Person:allPersons})
+        res.render("./person/index.ejs",{Person:allPersons})
     } catch (error) {
-        
+        console.log(error);
+        res.redirect("/");
     }
 })
 
@@ -21,7 +22,7 @@ router.post("/",async(req,res)=>{
     console.log(req.body)
 
     const createdPersons = await Person.create(req.body)
-    res.redirect("/persons")
+    res.redirect("./persons")
 })
 router.get("/:personId", async (req,res)=>{
     try {
@@ -29,10 +30,10 @@ router.get("/:personId", async (req,res)=>{
         //const currentPerson=await currentUser.id(req.params.personId)
         //console.log(currentPerson)
         //console.log(currentPerson)
-        res.render("person/showperson.ejs",{onePerson:currentPerson})
+        res.render("./person/showperson.ejs",{onePerson:currentPerson})
     } catch (error) {
         console.log(error)
-        res.redirect("/persons")
+        res.redirect("./persons")
     }
 })
 
@@ -44,21 +45,21 @@ router.delete("/:personId",async (req,res)=>{
   
         //await currentPerson.save()
   
-        res.redirect(`/persons`)
+        res.redirect(`./persons`)
   
     }catch(error){
         console.log(error)
-        res.redirect("/persons")
+        res.redirect("./persons")
     }
   })
   
   router.get("/:personId/edit", async (req,res)=>{
     try {
         const currentPerson=await Person.findById(req.params.personId)
-        res.render("person/editPerson.ejs",{onePerson:currentPerson})
+        res.render("./person/editPerson.ejs",{onePerson:currentPerson})
     } catch (error) {
         console.log(error)
-        res.redirect("/person")
+        res.redirect("./person")
     }
   })
   router.put("/:personId", async (req,res)=>{
@@ -66,10 +67,10 @@ router.delete("/:personId",async (req,res)=>{
         const currentPerson=await Person.findByIdAndUpdate(req.params.personId,req.body)
         console.log(currentPerson)
 
-        res.redirect("/persons")
+        res.redirect("./persons")
     } catch (error) {
         console.log(error)
-        res.redirect("/persons")
+        res.redirect("./persons")
     }
   })
 module.exports=router

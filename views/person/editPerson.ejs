@@ -8,7 +8,7 @@
 <body>
     <%- include('../partials/_navbar.ejs')%>
     <h1>Edit <%=onePerson.firstName%>'s details</h1>
-    <form action="/persons/<%= onePerson._id%>?_method=PUT" method="post">
+    <form action="/users/<%=user._id%>/persons/<%= onePerson._id%>?_method=PUT" method="post">
         <label for="firstname">Enter the first name</label>
         <input type="text" name="firstName" id="firstname">
         <label for="lastName">Enter the last name</label>

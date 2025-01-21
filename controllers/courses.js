@@ -30,7 +30,7 @@ router.get("/new", (req, res)=>{
 router.post("/", async(req, res)=>{
     try {
         await Course.create(req.body);
-        res.redirect("/courses");
+        res.redirect("./courses");
     } catch (error) {
         console.log(error);
         res.redirect("/");
@@ -69,7 +69,7 @@ router.put("/:itemId", async(req, res)=>{
         console.log(req.body);
         foundCourse.set(req.body);
         await foundCourse.save();
-        res.redirect(`/courses/${req.params.itemId}`);
+        res.redirect(`./${req.params.itemId}`);
     } catch (error) {
         console.log(error);
         res.redirect("/");
@@ -79,7 +79,7 @@ router.put("/:itemId", async(req, res)=>{
 router.delete("/:itemId", async(req, res)=>{
     try {
         await Course.findByIdAndDelete(req.params.itemId);
-        res.redirect(`/courses`);
+        res.redirect(`./courses`);
     } catch (error) {
         console.log(error);
         res.redirect("/");
