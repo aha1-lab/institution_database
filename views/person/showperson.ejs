@@ -13,9 +13,9 @@
     <h3>nationality: <%= onePerson.nationality%></h3>
     <h3>occupation: <%= onePerson.occupation%></h3>
 
-    <form action="/persons/<%=onePerson._id%>?_method=DELETE" method="post">
+    <form action="/users/<%=user._id%>/persons/<%=onePerson._id%>?_method=DELETE" method="post">
         <button>Delete  person</button>
     </form>
-    <a href="/persons/<%=onePerson._id%>/edit">Edit <%=onePerson.firstName%>'s details</a>
+    <a href="/users/<%=user._id%>/persons/<%=onePerson._id%>/edit">Edit <%=onePerson.firstName%>'s details</a>
 </body>
 </html>

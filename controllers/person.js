@@ -21,7 +21,7 @@ router.post("/",async(req,res)=>{
     console.log(req.body)
 
     const createdPersons = await Person.create(req.body)
-    res.redirect("/persons")
+    res.redirect(`/users/${req.session.user._id}/persons`)
 })
 router.get("/:personId", async (req,res)=>{
     try {
@@ -32,7 +32,7 @@ router.get("/:personId", async (req,res)=>{
         res.render("person/showperson.ejs",{onePerson:currentPerson})
     } catch (error) {
         console.log(error)
-        res.redirect("/persons")
+        res.redirect(`/users/${req.session.user._id}/persons`)
     }
 })
 
@@ -44,11 +44,11 @@ router.delete("/:personId",async (req,res)=>{
   
         //await currentPerson.save()
   
-        res.redirect(`/persons`)
+        res.redirect(`/users/${req.session.user._id}/persons`)
   
     }catch(error){
         console.log(error)
-        res.redirect("/persons")
+        res.redirect(`/users/${req.session.user._id}/persons`)
     }
   })
   
@@ -58,7 +58,7 @@ router.delete("/:personId",async (req,res)=>{
         res.render("person/editPerson.ejs",{onePerson:currentPerson})
     } catch (error) {
         console.log(error)
-        res.redirect("/person")
+        res.redirect(`/users/${req.session.user._id}/persons`)
     }
   })
   router.put("/:personId", async (req,res)=>{
@@ -66,10 +66,10 @@ router.delete("/:personId",async (req,res)=>{
         const currentPerson=await Person.findByIdAndUpdate(req.params.personId,req.body)
         console.log(currentPerson)
 
-        res.redirect("/persons")
+        res.redirect(`/users/${req.session.user._id}/persons`)
     } catch (error) {
         console.log(error)
-        res.redirect("/persons")
+        res.redirect(`/users/${req.session.user._id}/persons`)
     }
   })
 module.exports=router
