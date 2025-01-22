@@ -15,7 +15,7 @@ router.get("/", async (req, res)=>{
         })
     } catch (error) {
         console.log(error);
-        res.redirect("/");
+        res.redirect("`/users/${req.session.user._id}/courses`");
     }
     
 });
@@ -33,7 +33,7 @@ router.post("/", async(req, res)=>{
         res.redirect("./courses");
     } catch (error) {
         console.log(error);
-        res.redirect("/");
+        res.redirect("`/users/${req.session.user._id}/courses`");
     }
 });
 
@@ -46,7 +46,7 @@ router.get("/:itemId", async(req, res)=>{
         })
     } catch (error) {
         console.log(error);
-        res.redirect("/");
+        res.redirect("`/users/${req.session.user._id}/courses`");
     }
 });
 
@@ -59,7 +59,7 @@ router.get("/:itemId/edit", async(req, res)=>{
         })
     } catch (error) {
         console.log(error);
-        res.redirect("/");
+        res.redirect("`/users/${req.session.user._id}/courses`");
     }
 });
 
@@ -72,7 +72,7 @@ router.put("/:itemId", async(req, res)=>{
         res.redirect(`./${req.params.itemId}`);
     } catch (error) {
         console.log(error);
-        res.redirect("/");
+        res.redirect("`/users/${req.session.user._id}/courses`");
     }
 });
 
@@ -82,7 +82,7 @@ router.delete("/:itemId", async(req, res)=>{
         res.redirect(`./courses`);
     } catch (error) {
         console.log(error);
-        res.redirect("/");
+        res.redirect("`/users/${req.session.user._id}/courses`");
     }
 });
 module.exports = router;

@@ -8,9 +8,12 @@ const Course = require("../models/course.js");
 // Create a new enrollment
 router.post("/", async (req, res) => {
   try {
-
-    req.body.lastModifiedBy = req.session.user._id;
-    await Enrollment.create(req.body);
+    const studentList = req.body.student;
+    studentList.forEach(async (student)=>{
+      req.body.lastModifiedBy = req.session.user._id;
+      req.body.student = student;
+      await Enrollment.create(req.body);
+    })
     res.redirect(`/users/${req.session.user._id}/enrollments`);
   } catch (error) {
     console.log(error);
@@ -21,9 +24,10 @@ router.post("/", async (req, res) => {
 // Get all enrollments
 router.get("/", async (req, res) => {
   try {
-    const foundEnrollments = await Enrollment.find().populate("course");
-    
-      console.log(foundEnrollments)
+    const foundEnrollments = await Enrollment.find()
+    .populate("student")
+    .populate("tutor")
+    .populate("course");
     res.render("enrollments/index.ejs", {
        enrollments: foundEnrollments,
       });
@@ -53,52 +57,42 @@ router.get("/new", async (req, res)=>{
 
 
 // Get enrollment by ID
-router.get("/:id", async (req, res) => {
+router.get("/:id/edit", async (req, res) => {
   try {
-    const enrollment = await Enrollment.findById(req.params.id)
-      .populate("student", "firstName lastName")
-      .populate("tutor", "firstName lastName")
-      .populate("course", "name");
-    if (!enrollment) return res.status(404).send("Enrollment not found");
-    res.send(enrollment);
+    const foundEnrollment = await Enrollment.findById(req.params.id)
+    .populate("student")
+    .populate("tutor")
+    .populate("course");
+    res.render("enrollments/edit.ejs", {
+       enrollment: foundEnrollment,
+      });
   } catch (error) {
-    res.status(400).send(error.message);
+    console.log(error);
+    res.redirect(`/users/${req.session.user._id}/enrollments`);
   }
 });
 
 // Update enrollment (only for admins)
-router.patch("/:id", async (req, res) => {
+router.put("/:id", async (req, res) => {
   try {
-    // Check if the user is an admin
-    if (req.user.role !== "admin") {
-      return res.status(403).send("Only admins can update enrollments");
-    }
-
-    const enrollment = await Enrollment.findByIdAndUpdate(
-      req.params.id,
-      req.body,
-      { new: true }
-    );
-    if (!enrollment) return res.status(404).send("Enrollment not found");
-    res.send(enrollment);
+    const foundEnrollment = await Enrollment.findById(req.params.id)
+    foundEnrollment.grade = req.body.grade;
+    foundEnrollment.save();
+    res.redirect(`/users/${req.session.user._id}/enrollments`);
   } catch (error) {
-    res.status(400).send(error.message);
+    console.log(error);
+    res.redirect(`/users/${req.session.user._id}/enrollments`);
   }
 });
 
 // Delete enrollment (only for admins)
 router.delete("/:id", async (req, res) => {
   try {
-    // Check if the user is an admin
-    if (req.user.role !== "admin") {
-      return res.status(403).send("Only admins can delete enrollments");
-    }
-
-    const enrollment = await Enrollment.findByIdAndDelete(req.params.id);
-    if (!enrollment) return res.status(404).send("Enrollment not found");
-    res.send(enrollment);
+    await Enrollment.findByIdAndDelete(req.params.id);
+    res.redirect(`/users/${req.session.user._id}/enrollments`);
   } catch (error) {
-    res.status(400).send(error.message);
+    console.log(error);
+    res.redirect(`/users/${req.session.user._id}/enrollments`);
   }
 });
 
