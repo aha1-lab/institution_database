@@ -10,10 +10,12 @@
     <h1>COURSE CATALOG</h1>
     <h2>Part-time or full-time. Bootcamp. Short course. Workshop. Choose your own tech adventure.</h2>
     <% courses.forEach((course)=>{%>
-        <h3><a href="/users/<%=user._id%>/courses/<%=course._id%>"><%=course.name%></a></h3>
-        <li><%=course.description%></li>
-        <li>📍<%=course.studyType%></li>
-        <li>🕗<%=course.durations%> weeks</li>
+        <% if(course.active===true){%>
+            <h3><a href="/users/<%=user._id%>/courses/<%=course._id%>"><%=course.name%></a></h3>
+            <li><%=course.description%></li>
+            <li>📍<%=course.studyType%></li>
+            <li>🕗<%=course.durations%> weeks</li>
+        <%}%>
     <%})%>
 
     <a href="/users/<%=user._id%>/courses/new">Add New Course</a>

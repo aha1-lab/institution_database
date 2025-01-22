@@ -29,17 +29,19 @@
         </tr>
       
         <% enrollments.forEach((enrollment)=>{%>
-        <tr>
-            <td><a href="/users/<%=user._id%>/persons/<%=enrollment.student._id%>"><%=enrollment.student.firstName%> <%=enrollment.student.lastName%></a></td>
-            <td><%=enrollment.tutor.firstName%> <%=enrollment.tutor.lastName%></td>
-            <td><%=enrollment.course.name%></td>
-            <td><%=enrollment.startDate.toLocaleDateString('en-GB')%></td>
-            <td><%=enrollment.grade%></td>
-            <td><a href="/users/<%=user._id%>/enrollments/<%=enrollment._id%>/edit">Edit</a></td>
-            <td><form action="/users/<%=user._id%>/enrollments/<%=enrollment._id%>?_method=DELETE" method="POST">
-                <button type="submit">Delete</button>
-            </form></td>
-        </tr>
+            <%if (enrollment.student.active===true && enrollment.tutor.active===true && enrollment.course.active===true){%>
+                <tr>
+                    <td><a href="/users/<%=user._id%>/persons/<%=enrollment.student._id%>"><%=enrollment.student.firstName%> <%=enrollment.student.lastName%></a></td>
+                    <td><%=enrollment.tutor.firstName%> <%=enrollment.tutor.lastName%></td>
+                    <td><%=enrollment.course.name%></td>
+                    <td><%=enrollment.startDate.toLocaleDateString('en-GB')%></td>
+                    <td><%=enrollment.grade%></td>
+                    <td><a href="/users/<%=user._id%>/enrollments/<%=enrollment._id%>/edit">Edit</a></td>
+                    <td><form action="/users/<%=user._id%>/enrollments/<%=enrollment._id%>?_method=DELETE" method="POST">
+                        <button type="submit">Delete</button>
+                    </form></td>
+                </tr>
+            <%}%>
         <%})%>
     </table>
 
