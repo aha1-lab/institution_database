@@ -12,8 +12,6 @@
 <body>
     <%- include('../partials/_navbar.ejs')%>
 
-    <a href="/users/<%=user._id%>/persons/reactivatePerson">Reactivate a deactive user</a>
-
         <div class="persons-grid">
             <div class="persons-section">
                 <h2>Tutors</h2>
@@ -37,6 +35,9 @@
         </div>
         <form action="/users/<%= user._id %>/persons/newPerson">
             <button type="submit" class="add-person-btn">Add Person</button>
+        </form>
+        <form action="/users/<%=user._id%>/persons/reactivatePerson">
+            <button type="submit" class="add-person-btn">Reactivate a deactive user</button>
         </form>
 </body>
 

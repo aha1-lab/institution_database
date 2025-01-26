@@ -4,12 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        table, th, td {
-            border: 1px solid black;
-            border-collapse: collapse;
-        }
-    </style>
+    <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
     <%- include('../partials/_navbar.ejs')%>
@@ -27,7 +22,7 @@
                 <td><%= course.name%></td>
                 <td><%= course.topic%></td>
                 <td><%= course.StudyType%></td>
-                <td><form action="/users/<%=user._id%>/persons/toggle-user/<%=course._id%>?_method=PUT" method="post"><button>Reactivate</button></form></td>
+                <td><form action="/users/<%=user._id%>/courses/toggle-user/<%=course._id%>?_method=PUT" method="post"><button>Reactivate</button></form></td>
         </tr>
         <%})%>
     </table>

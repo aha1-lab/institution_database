@@ -11,7 +11,6 @@
 <body>
     <%- include('../partials/_navbar.ejs')%>
 
-    <a href="/users/<%=user._id%>/courses/reactivateCourse">Reactivate an inactive course</a>
 
         <div class="catalog-header">
             <h1>COURSE CATALOG</h1>
@@ -37,7 +36,9 @@
         <form action="/users/<%= user._id %>/courses/new">
             <button type="submit" class="add-course-btn">Add New Course</button>
         </form>
-
+        <form action="/users/<%= user._id%>/courses/reactivateCourse">
+            <button type="submit" class="add-course-btn">Reactivate an inactive course</button>
+        </form>
 </body>
 
 </html>
