@@ -10,7 +10,7 @@
     <h1>All of the people enrolled are bellow:</h1>
 
     <a href="/users/<%=user._id%>/persons/newPerson">Add a new person</a>
-    
+    <a href="/users/<%=user._id%>/persons/reactivatePerson">Reactivate a deactive user</a>
     <% Person.forEach((onePerson)=>{ %>
         <% if (onePerson.active===true){%>
             <a href="/users/<%=user._id%>/persons/<%=onePerson._id%>"><li><%=onePerson.firstName%> <%=onePerson.lastName%> <%=onePerson.occupation%></li></a>

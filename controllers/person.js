@@ -16,9 +16,14 @@ router.get("/", async(req,res)=>{
 })
 
 router.get("/newPerson", async (req,res)=>{
+   
     res.render("person/createPerson.ejs")
 })
-
+router.get("/reactivatePerson", async (req,res)=>{
+    const allPersons= await Person.find({active:false})
+    console.log(allPersons)
+    res.render("person/reactivate.ejs",{allPersons:allPersons})
+})
 router.post("/",async(req,res)=>{
     //req.body.owner = req.session.user._id
     
@@ -74,6 +79,7 @@ router.delete("/:personId",async (req,res)=>{
         res.redirect(`/users/${req.session.user._id}/persons`)
     }
   })
+  // put method to update person
   router.put("/:personId", async (req,res)=>{
     try {
         const currentPerson=await Person.findByIdAndUpdate(req.params.personId,req.body)
@@ -83,6 +89,18 @@ router.delete("/:personId",async (req,res)=>{
     } catch (error) {
         console.log(error)
         res.redirect(`/users/${req.session.user._id}/persons`)
+    }
+  })
+  // put method to reactivate a deactive person
+  router.put("/toggle-user/:personId", async(req,res)=>{
+    try {
+        const deactivePerson=await Person.findByIdAndUpdate(req.params.personId,{active:true})
+        console.log(deactivePerson)
+
+        res.redirect(`/users/${req.session.user._id}/persons`)
+    } catch (error) {
+        console.log(error)
+        res.redirect(`/users/${req/session.user._id}/persons`)
     }
   })
 module.exports=router
