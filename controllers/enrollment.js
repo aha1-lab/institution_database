@@ -40,6 +40,28 @@ router.get("/", async (req, res) => {
   }
 });
 
+// Filter the data
+router.post("/filter", async (req, res) => {
+  const courseId = req.body.course;
+  const startDate = req.body.startDate;
+  const filterSetup = {};
+  if(courseId !== "null") filterSetup.course = courseId;
+  if(startDate !== "null") filterSetup.startDate = startDate;
+
+  try {
+    const foundEnrollments = await Enrollment.find(filterSetup)
+    .populate("student")
+    .populate("tutor")
+    .populate("course");
+    res.render("enrollments/index.ejs", {
+       enrollments: foundEnrollments,
+      });
+  } catch (error) {
+    console.log(error);
+    res.redirect(`/users/${req.session.user._id}/enrollments`);
+  }
+});
+
 
 router.get("/new", async (req, res)=>{
   try {
