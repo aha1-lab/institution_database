@@ -11,6 +11,7 @@
 <body>
     <%- include('../partials/_navbar.ejs')%>
 
+
         <div class="catalog-header">
             <h1>COURSE CATALOG</h1>
             <h2>Part-time or full-time. Bootcamp. Short course. Workshop. Choose your own tech adventure.</h2>
@@ -28,14 +29,16 @@
                     </li>
                     <li>📍 <%=course.studyType%>
                     </li>
-                    <li>🕗 <%=course.durations%> weeks</li>
+                    <li>🕗 <%=course.duration%> weeks</li>
                 </div>
                 <% }) %>
         </div>
         <form action="/users/<%= user._id %>/courses/new">
             <button type="submit" class="add-course-btn">Add New Course</button>
         </form>
-
+        <form action="/users/<%= user._id%>/courses/reactivateCourse">
+            <button type="submit" class="add-course-btn">Reactivate an inactive course</button>
+        </form>
 </body>
 
 </html>

@@ -9,7 +9,7 @@ courseSelectionList ={
 
 router.get("/", async (req, res)=>{
     try {
-        const allCourses = await Course.find();
+        const allCourses = await Course.find({active: true});
         res.render("./courses/index.ejs",{
             courses : allCourses,
         })
@@ -26,6 +26,11 @@ router.get("/new", (req, res)=>{
     });
 });
 
+router.get("/reactivateCourse", async (req,res)=>{
+    const allCourses= await Course.find({active:false})
+    console.log(allCourses)
+    res.render("courses/reactivate.ejs",{allCourses:allCourses})
+})
 
 router.post("/", async(req, res)=>{
     try {
@@ -63,7 +68,7 @@ router.get("/:itemId/edit", async(req, res)=>{
         res.redirect("`/users/${req.session.user._id}/courses`");
     }
 });
-
+// put to update code
 router.put("/:itemId", async(req, res)=>{
     try {
         const foundCourse = await Course.findById(req.params.itemId);
@@ -76,7 +81,17 @@ router.put("/:itemId", async(req, res)=>{
         res.redirect("`/users/${req.session.user._id}/courses`");
     }
 });
+router.put("/toggle-user/:personId", async(req,res)=>{
+    try {
+        const deactiveCourse=await Course.findByIdAndUpdate(req.params.personId,{active:true})
+        console.log(deactiveCourse)
 
+        res.redirect(`/users/${req.session.user._id}/courses`)
+    } catch (error) {
+        console.log(error)
+        res.redirect(`/users/${req/session.user._id}/courses`)
+    }
+  })
 router.delete("/:itemId", async(req, res)=>{
     try {
         await Course.findByIdAndUpdate(req.params.itemId,{active:false});

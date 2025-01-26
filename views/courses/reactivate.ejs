@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <%- include('../partials/_navbar.ejs')%>
+    <h1>Reactivate any of the following deactivated courses</h1>
+
+    <table>
+        <tr>
+            <th>Course name</th>
+            <th>Topic</th>
+            <th>Study Type</th>
+            <th>Reactivate</th>
+        </tr>
+        <% allCourses.forEach((course)=>{ %>
+        <tr>
+                <td><%= course.name%></td>
+                <td><%= course.topic%></td>
+                <td><%= course.StudyType%></td>
+                <td><form action="/users/<%=user._id%>/courses/toggle-user/<%=course._id%>?_method=PUT" method="post"><button>Reactivate</button></form></td>
+        </tr>
+        <%})%>
+    </table>
+    
+
+</body>
+</html>
