@@ -1,21 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Course Catalog</title>
+    <link rel="stylesheet" href="/styles.css">
 </head>
+
 <body>
     <%- include('../partials/_navbar.ejs')%>
-    <h1>COURSE CATALOG</h1>
-    <h2>Part-time or full-time. Bootcamp. Short course. Workshop. Choose your own tech adventure.</h2>
-    <% courses.forEach((course)=>{%>
-        <h3><a href="/users/<%=user._id%>/courses/<%=course._id%>"><%=course.name%></a></h3>
-        <li><%=course.description%></li>
-        <li>📍<%=course.studyType%></li>
-        <li>🕗<%=course.durations%> weeks</li>
-    <%})%>
 
-    <a href="/users/<%=user._id%>/courses/new">Add New Course</a>
+        <div class="catalog-header">
+            <h1>COURSE CATALOG</h1>
+            <h2>Part-time or full-time. Bootcamp. Short course. Workshop. Choose your own tech adventure.</h2>
+        </div>
+        <div class="course-list">
+            <% courses.forEach((course)=>{ %>
+                <div class="course">
+                    <h3>
+                        <a href="/users/<%=user._id%>/courses/<%=course._id%>">
+                            <%=course.name%>
+                        </a>
+                    </h3>
+                    <li>
+                        <%=course.description%>
+                    </li>
+                    <li>📍 <%=course.studyType%>
+                    </li>
+                    <li>🕗 <%=course.durations%> weeks</li>
+                </div>
+                <% }) %>
+        </div>
+        <form action="/users/<%= user._id %>/courses/new">
+            <button type="submit" class="add-course-btn">Add New Course</button>
+        </form>
+
 </body>
+
 </html>

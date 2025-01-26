@@ -29,6 +29,7 @@ router.get("/new", (req, res)=>{
 
 router.post("/", async(req, res)=>{
     try {
+        req.body.active=true
         await Course.create(req.body);
         res.redirect(`/users/${req.session.user._id}/courses`);
     } catch (error) {
@@ -78,7 +79,7 @@ router.put("/:itemId", async(req, res)=>{
 
 router.delete("/:itemId", async(req, res)=>{
     try {
-        await Course.findByIdAndDelete(req.params.itemId);
+        await Course.findByIdAndUpdate(req.params.itemId,{active:false});
         res.redirect(`/users/${req.session.user._id}/courses`);
     } catch (error) {
         console.log(error);

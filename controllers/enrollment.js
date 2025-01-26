@@ -4,6 +4,7 @@ const router = express.Router();
 const Enrollment = require("../models/enrollments");
 const Person = require("../models/person.js");
 const Course = require("../models/course.js");
+const enrollments = require("../models/enrollments");
 
 // Create a new enrollment
 router.post("/", async (req, res) => {
@@ -28,6 +29,8 @@ router.get("/", async (req, res) => {
     .populate("student")
     .populate("tutor")
     .populate("course");
+    
+    
     res.render("enrollments/index.ejs", {
        enrollments: foundEnrollments,
       });
@@ -62,9 +65,9 @@ router.post("/filter", async (req, res) => {
 
 router.get("/new", async (req, res)=>{
   try {
-    const foundStudents = await Person.find({occupation : "Student"});
-    const foundTutors = await Person.find({occupation : "Tutor"});
-    const foundCourse = await Course.find();
+    const foundStudents = await Person.find({occupation : "Student", active: true});
+    const foundTutors = await Person.find({occupation : "Tutor", active: true});
+    const foundCourse = await Course.find({active:true});
     res.render("./enrollments/new.ejs",{
       students: foundStudents,
       tutors: foundTutors,

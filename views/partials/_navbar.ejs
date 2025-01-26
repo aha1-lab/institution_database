@@ -1,6 +1,10 @@
 <!-- views/partials/_navbar.ejs -->
 
 <nav>
+    <!-- Link for the image in the left corner -->
+    <img src="/GA pics/GA-logo.png" alt="GA logo" class="nav-img">
+    </a>
+
     <% if(user) { %>
         <a href="/users/<%= user._id %>/courses">See Course List</a>
         <a href="/users/<%= user._id %>/persons">List of people</a>
@@ -9,5 +13,5 @@
         <% } else { %>
             <a href="/auth/sign-in">Sign In</a>
             <a href="/auth/sign-up">Sign Up</a>
-        <% } %>
+            <% } %>
 </nav>
