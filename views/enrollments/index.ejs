@@ -6,18 +6,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Enrollment</title>
-    <style>
-        table, th, td {
-            border: 1px solid black;
-            border-collapse: collapse;
-        }
-    </style>
+    
+    <link rel="stylesheet" href="/style.css">
 </head>
 
 <body>
     <%- include('../partials/_navbar.ejs')%>
-    <h1>Enrollment</h1>
+    <h1>Enrollment 2</h1>
+
+    <form action="/users/<%=user._id%>/enrollments/filter" method="post">
+        <label for="course">Filter By Course:</label>
+        <select name="course" id="course">
+            <option value="null"></option>
+            <% let old_value = []%>
+            <% enrollments.forEach((enrollment)=>{%>
+                <% if(!old_value.includes(enrollment.course.name)){ %>
+                    <option value="<%=enrollment.course._id%>"><%=enrollment.course.name%></option>
+                    <% old_value.push(enrollment.course.name)%>
+               <% } %>
+            <%})%>
+        </select>
+
+        <label for="startDate">Filter By Start Date:</label>
+        <select name="startDate" id="startDate">
+            <option value="null"></option>
+            <% old_value = [] %>
+            <% enrollments.forEach((enrollment)=>{%>
+                <% if(!old_value.includes(enrollment.startDate.toLocaleDateString('en-GB'))){ %>
+                    <option value="<%=enrollment.startDate%>"><%=enrollment.startDate.toLocaleDateString('en-GB')%></option>
+                    <% old_value.push(enrollment.startDate.toLocaleDateString('en-GB'))%>
+               <% } %>
+            <%})%>
+        </select>
+        <button type="submit">Filter</button>
+    </form>
     <table>
+
         <tr>
           <th>Student Name</th>
           <th>Tutor Name</th>
