@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Course</title>
+    <link rel="stylesheet" href="/styles.css">
+
+</head>
+
+<body>
+    <%- include('../partials/_navbar.ejs')%>
+        <h1>Add New Course</h1>
+        <form action="/users/<%=user._id%>/courses" method="POST">
+            <label for="name">Course Name:</label>
+            <input type="text" name="name" id="name">
+
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" required></textarea>
+
+            <label for="topic">Topic</label>
+            <select name="topic" id="topic">
+                <% course.topic.forEach((item)=>{%>
+                    <option value="<%=item%>">
+                        <%=item%>
+                    </option>
+                    <%})%>
+            </select>
+
+            <label for="catalog">Catalogoury</label>
+            <select name="catalog" id="catalog">
+                <% course.catalog.forEach((item)=>{%>
+                    <option value="<%=item%>">
+                        <%=item%>
+                    </option>
+                    <%})%>
+            </select>
+
+            <label for="studyType">Study Type</label>
+            <select name="studyType" id="studyType">
+                <% course.studyType.forEach((item)=>{%>
+                    <option value="<%=item%>">
+                        <%=item%>
+                    </option>
+                    <%})%>
+            </select>
+
+            <label for="duration">Course Duration</label>
+            <input type="number" name="duration" id="duration">
+
+            <button type="submit">Add New Course</button>
+        </form>
+</body>
+
+</html>

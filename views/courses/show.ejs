@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/styles.css">
+
+</head>
+
+<body>
+    <%- include('../partials/_navbar.ejs')%>
+        <div class="course-card">
+            <h1>
+                <%=course.name%>
+            </h1>
+            <h2>
+                <%=course.description%>
+            </h2>
+            <li>Topic: <%=course.topic%>
+            </li>
+            <li>Catalog: <%=course.catalog%>
+            </li>
+            <li>📍<%=course.studyType%>
+            </li>
+            <li>🕗<%=course.duration%> weeks</li>
+        </div>
+
+        <form action="/users/<%=user._id%>/courses/<%=course._id%>?_method=DELETE" method="POST">
+            <button>Delete <%=course.name%></button>
+        </form>
+        <form action="/users/<%= user._id %>/courses/<%= course._id %>/edit">
+            <button type="submit">Update <%= course.name %></button>
+        </form>
+
+</body>
+
+</html>

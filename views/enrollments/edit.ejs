@@ -1,0 +1,35 @@
+<!-- views/enrollment.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enrollment</title>
+    <link rel="stylesheet" href="/styles.css">
+
+</head>
+
+<body>
+    <%- include('../partials/_navbar.ejs')%>
+        <h1>Enrollment</h1>
+        <form action="/users/<%=user._id%>/enrollments/<%=enrollment._id%>?_method=PUT" method="POST">
+            <label for="student">Student Name: </label>
+            <label for="student">enrollment.student.firstName</label>
+
+            <label for="tutor">Tutor Name: </label>
+            <label for="student">enrollment.tutor.firstName</label>
+
+            <label for="course">Course Name: </label>
+            <label for="course">enrollment.course.name</label>
+
+            <label for="startDate">Start Date</label>
+
+            <label for="grade">Add grade</label>
+            <input type="number" name="grade" id="grade" value="enrollment.grade">
+
+            <button type="submit">Update Grade</button>
+        </form>
+</body>
+
+</html>
