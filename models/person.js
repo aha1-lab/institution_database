@@ -17,6 +17,10 @@ const personSchema= new mongoose.Schema({
         type:String,
         enum:["Student","Tutor"],
         required:true
+    },
+    active:{
+        type:Boolean,
+        required:false
     }
 })
 

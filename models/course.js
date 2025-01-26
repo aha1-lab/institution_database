@@ -25,6 +25,10 @@ const courseSchema = mongoose.Schema({
     duration:{
         type:Number,
         required: true
+    },
+    active:{
+        type:Boolean,
+        required:true
     }
 });
 
