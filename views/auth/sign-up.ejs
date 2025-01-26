@@ -5,11 +5,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sign Up</title>
+  <link rel="stylesheet" href="../auth.css">
+
 </head>
 
 <body>
   <%- include('../partials/_navbar.ejs')%>
-
+    <img src="/GA pics/institution -ga  IN.png" alt="GA logo" class="sign-img">
     <h1>Create a new account!</h1>
     <form action="/auth/sign-up" method="POST">
       <label for="username">Username:</label>

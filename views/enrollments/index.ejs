@@ -6,46 +6,86 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Enrollment</title>
-    <style>
-        table, th, td {
-            border: 1px solid black;
-            border-collapse: collapse;
-        }
-    </style>
+
+    <link rel="stylesheet" href="/styles.css">
+
 </head>
 
 <body>
     <%- include('../partials/_navbar.ejs')%>
-    <h1>Enrollment</h1>
-    <table>
-        <tr>
-          <th>Student Name</th>
-          <th>Tutor Name</th>
-          <th>Course</th>
-          <th>Start Date</th>
-          <th>grade</th>
-          <th>Edit</th>
-          <th>Delete</th>
-        </tr>
-      
-        <% enrollments.forEach((enrollment)=>{%>
-            <%if (enrollment.student.active===true && enrollment.tutor.active===true && enrollment.course.active===true){%>
-                <tr>
-                    <td><a href="/users/<%=user._id%>/persons/<%=enrollment.student._id%>"><%=enrollment.student.firstName%> <%=enrollment.student.lastName%></a></td>
-                    <td><%=enrollment.tutor.firstName%> <%=enrollment.tutor.lastName%></td>
-                    <td><%=enrollment.course.name%></td>
-                    <td><%=enrollment.startDate.toLocaleDateString('en-GB')%></td>
-                    <td><%=enrollment.grade%></td>
-                    <td><a href="/users/<%=user._id%>/enrollments/<%=enrollment._id%>/edit">Edit</a></td>
-                    <td><form action="/users/<%=user._id%>/enrollments/<%=enrollment._id%>?_method=DELETE" method="POST">
-                        <button type="submit">Delete</button>
-                    </form></td>
-                </tr>
-            <%}%>
-        <%})%>
-    </table>
 
-    <a href="/users/<%=user._id%>/enrollments/new">Add new new enrollment</a>
+    <h1>Enrollment 2</h1>
+
+    <form action="/users/<%=user._id%>/enrollments/filter" method="post">
+        <label for="course">Filter By Course:</label>
+        <select name="course" id="course">
+            <option value="null"></option>
+            <% let old_value = []%>
+            <% enrollments.forEach((enrollment)=>{%>
+                <% if(!old_value.includes(enrollment.course.name)){ %>
+                    <option value="<%=enrollment.course._id%>"><%=enrollment.course.name%></option>
+                    <% old_value.push(enrollment.course.name)%>
+               <% } %>
+            <%})%>
+        </select>
+
+        <label for="startDate">Filter By Start Date:</label>
+        <select name="startDate" id="startDate">
+            <option value="null"></option>
+            <% old_value = [] %>
+            <% enrollments.forEach((enrollment)=>{%>
+                <% if(!old_value.includes(enrollment.startDate.toLocaleDateString('en-GB'))){ %>
+                    <option value="<%=enrollment.startDate%>"><%=enrollment.startDate.toLocaleDateString('en-GB')%></option>
+                    <% old_value.push(enrollment.startDate.toLocaleDateString('en-GB'))%>
+               <% } %>
+            <%})%>
+        </select>
+        <button type="submit">Filter</button>
+    </form>
+    <table>
+        <h1>Enrollment</h1>
+        <table>
+            <tr>
+                <th>Student Name</th>
+                <th>Tutor Name</th>
+                <th>Course</th>
+                <th>Start Date</th>
+                <th>grade</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+
+            <% enrollments.forEach((enrollment)=>{%>
+                <tr>
+                    <td><a href="/users/<%=user._id%>/persons/<%=enrollment.student._id%>">
+                            <%=enrollment.student.firstName%>
+                                <%=enrollment.student.lastName%>
+                        </a></td>
+                    <td>
+                        <%=enrollment.tutor.firstName%>
+                            <%=enrollment.tutor.lastName%>
+                    </td>
+                    <td>
+                        <%=enrollment.course.name%>
+                    </td>
+                    <td><%=enrollment.startDate.toLocaleDateString('en-GB')%></td>
+                    <td>
+                        <%=enrollment.grade%>
+                    </td>
+                    <td><a href="/users/<%=user._id%>/enrollments/<%=enrollment._id%>/edit">Edit</a></td>
+                    <td>
+                        <form action="/users/<%=user._id%>/enrollments/<%=enrollment._id%>?_method=DELETE"
+                            method="POST">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                <%})%>
+        </table>
+
+        <form action="/users/<%= user._id %>/enrollments/new" method="GET">
+            <button type="submit" class="button">Add new enrollment</button>
+        </form>
 </body>
 
 </html>
