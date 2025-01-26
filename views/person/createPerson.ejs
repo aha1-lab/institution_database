@@ -1,27 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/styles.css">
+
 </head>
+
 <body>
     <%- include('../partials/_navbar.ejs')%>
-    <h1>Add a person to the institution data base</h1>
-    <form action="/users/<%=user._id%>/persons" method="post">
-        <label for="firstname">Enter the first name</label>
-        <input type="text" name="firstName" id="firstname">
-        <label for="lastName">Enter the last name</label>
-        <input type="text" name="lastName" id="lastName">
-        <label for="nationality">Enter the nationality</label>
-        <input type="text" name="nationality" id="nationality">
-        <label for="occupation">Choose the occupation:</label>
-        <select name="occupation" id="occupation">
-            <option value="Student">Student</option>
-            <option value="Tutor">Tutor</option>
-        </select>
+        <h1>Add a person to the institution data base</h1>
+        <form action="/users/<%=user._id%>/persons" method="post">
+            <label for="firstname">Enter the first name</label>
+            <input type="text" name="firstName" id="firstname">
+            <label for="lastName">Enter the last name</label>
+            <input type="text" name="lastName" id="lastName">
+            <label for="nationality">Enter the nationality</label>
+            <input type="text" name="nationality" id="nationality">
+            <label for="occupation">Choose the occupation:</label>
+            <select name="occupation" id="occupation">
+                <option value="Student">Student</option>
+                <option value="Tutor">Tutor</option>
+            </select>
 
-        <button>Submit person details</button>
-    </form>
+            <button>Submit person details</button>
+        </form>
 </body>
+
 </html>
