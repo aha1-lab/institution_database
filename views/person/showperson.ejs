@@ -1,25 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/styles.css">
+
 </head>
+
 <body>
     <%- include('../partials/_navbar.ejs')%>
-    <h1><%= onePerson.firstName%>'s Details</h1>
-    <h3>First name: <%= onePerson.firstName%></h3>
-    <h3>Last name: <%= onePerson.lastName%></h3>
-    <h3>nationality: <%= onePerson.nationality%></h3>
-    <h3>occupation: <%= onePerson.occupation%></h3>
+        <div class="person-card">
+            <h1>
+                <%= onePerson.firstName%>'s Details
+            </h1>
+            <h3>First name: <%= onePerson.firstName%>
+            </h3>
+            <h3>Last name: <%= onePerson.lastName%>
+            </h3>
+            <h3>nationality: <%= onePerson.nationality%>
+            </h3>
+            <h3>occupation: <%= onePerson.occupation%>
+            </h3>
 
-    <h1>List Of courses</h1>
-    <% enrollments.forEach((enrollment)=>{%>
-        <li><%=enrollment.course.name%></li>
-    <%})%>
-    <form action="/users/<%=user._id%>/persons/<%=onePerson._id%>?_method=DELETE" method="post">
-        <button>Delete  person</button>
-    </form>
-    <a href="/users/<%=user._id%>/persons/<%=onePerson._id%>/edit">Edit <%=onePerson.firstName%>'s details</a>
+            <h1>List Of courses</h1>
+            <% enrollments.forEach((enrollment)=>{%>
+                <li>
+                    <%=enrollment.course.name%>
+                </li>
+                <%})%>
+        </div>
+        <form action="/users/<%=user._id%>/persons/<%=onePerson._id%>?_method=DELETE" method="post">
+            <button>Delete person</button>
+        </form>
+        <form action="/users/<%= user._id %>/persons/<%= onePerson._id %>/edit" method="GET" style="display: inline;">
+            <button type="submit" class="button">Edit <%= onePerson.firstName %>'s details</button>
+        </form>
+
 </body>
+
 </html>
