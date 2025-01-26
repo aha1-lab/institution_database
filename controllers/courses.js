@@ -9,7 +9,7 @@ courseSelectionList ={
 
 router.get("/", async (req, res)=>{
     try {
-        const allCourses = await Course.find();
+        const allCourses = await Course.find({active: true});
         res.render("./courses/index.ejs",{
             courses : allCourses,
         })

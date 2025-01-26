@@ -7,7 +7,7 @@ const Enrollment = require("../models/enrollments.js");
 router.get("/", async(req,res)=>{
     try {
 
-        const allPersons= await Person.find()
+        const allPersons= await Person.find({active: true})
         res.render("person/index.ejs",{Person:allPersons})
     } catch (error) {
         console.log(error)
@@ -24,6 +24,7 @@ router.get("/reactivatePerson", async (req,res)=>{
     console.log(allPersons)
     res.render("person/reactivate.ejs",{allPersons:allPersons})
 })
+
 router.post("/",async(req,res)=>{
     //req.body.owner = req.session.user._id
     
@@ -38,6 +39,7 @@ router.post("/",async(req,res)=>{
         res.redirect(`/users/${req.session.user._id}/persons`)
     }
 })
+
 router.get("/:personId", async (req,res)=>{
     try {
         const currentPerson = await Person.findById(req.params.personId)

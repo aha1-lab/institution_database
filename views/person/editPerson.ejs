@@ -13,14 +13,18 @@
     <%- include('../partials/_navbar.ejs')%>
         <h1>Edit <%=onePerson.firstName%>'s details</h1>
         <form action="/users/<%=user._id%>/persons/<%= onePerson._id%>?_method=PUT" method="post">
-            <label for="firstname">Enter the first name</label>
-            <input type="text" name="firstName" id="firstname">
+            <label for="firstName">Enter the first name</label>
+            <input type="text" name="firstName" id="firstName" value="<%=onePerson.firstName%>">
+
             <label for="lastName">Enter the last name</label>
-            <input type="text" name="lastName" id="lastName">
+            <input type="text" name="lastName" id="lastName" value="<%=onePerson.lastName%>">
+
             <label for="nationality">Enter the nationality</label>
-            <input type="text" name="nationality" id="nationality">
+            <input type="text" name="nationality" id="nationality" value="<%=onePerson.nationality%>">
+
             <label for="occupation">Choose the occupation:</label>
-            <select name="occupation" id="occupation">
+            <select name="occupation" id="occupation" value="<%=onePerson.occupation%>">
+
                 <option value="Student">Student</option>
                 <option value="Tutor">Tutor</option>
             </select>

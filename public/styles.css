@@ -43,6 +43,16 @@ label {
   letter-spacing: 1px;
 }
 
+.multiple-selecet{
+  width: 90%;
+}
+
+.textareaA{
+  width: 98%;
+  height: 200px;
+  margin: auto 2px;
+}
+
 input {
   width: 100%;
   padding: 0.8rem;
