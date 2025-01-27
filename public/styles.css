@@ -316,3 +316,6 @@ td button {
   border-radius: 4px;
   display: inline-block;
 }
+.filter-form{
+  margin-top: 90px;
+}
