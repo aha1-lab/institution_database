@@ -12,6 +12,7 @@
 
 <body>
     <%- include('../partials/_navbar.ejs')%>
+
     <h1>Enrollment</h1>
     <form action="/users/<%=user._id%>/enrollments" method="POST">
         <label for="student">Student Name</label>
@@ -43,5 +44,6 @@
 
         <button type="submit">Enroll</button>
     </form>
+
 </body>
 </html>
