@@ -43,6 +43,16 @@ label {
   letter-spacing: 1px;
 }
 
+.multiple-selecet{
+  width: 90%;
+}
+
+.textareaA{
+  width: 98%;
+  height: 200px;
+  margin: auto 2px;
+}
+
 input {
   width: 100%;
   padding: 0.8rem;
@@ -291,4 +301,31 @@ textarea{
   background: rgba(255,255,255,0.021);
   color: blueviolet;
   
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#preloader{
+  background: #000000;
+  background-size: 15%;
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  z-index: 100;
+}
+
+#preloader-1{
+  background: #000000 url(loader/ga-logo.png) no-repeat center center;
+  background-size: 15%;
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  z-index: 101;
+  animation: spin 5s infinite linear;
 }
