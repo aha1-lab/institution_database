@@ -23,8 +23,17 @@
 
 <script>
     let loader = document.getElementById("preloader");
+    let aElement = document.querySelectorAll("a");
+    let buttonElement = document.querySelectorAll("button");
+
     window.addEventListener("load", function(){
         loader.style.display = "none";
+    });
+    aElement.addEventListener("click", function(){
+        loader.style.display = "block";
+    });
+    buttonElement.addEventListener("click", function(){
+        loader.style.display = "block";
     });
 </script>
 
