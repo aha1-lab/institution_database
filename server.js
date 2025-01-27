@@ -18,6 +18,10 @@ const personController = require("./controllers/person.js");
 const authContorller = require("./controllers/auth.js");
 const enrollmentController = require("./controllers/enrollment.js");
 const path = require("path");
+// light mode
+const toggleLightMode = () => {
+  document.body.classList.toggle("light-mode");
+};
 
 // =======================
 // 2. MIDDLEWARE
