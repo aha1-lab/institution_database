@@ -43,11 +43,11 @@ label {
   letter-spacing: 1px;
 }
 
-.multiple-selecet{
+.multiple-selecet {
   width: 90%;
 }
 
-.textareaA{
+.textareaA {
   width: 98%;
   height: 200px;
   margin: auto 2px;
@@ -118,6 +118,12 @@ nav a:hover {
 }
 .sign-img {
   width: 400px; /* Adjust the width as needed */
+  height: auto; /* Maintain aspect ratio */
+  vertical-align: middle; /* Align image in the middle of the nav bar */
+}
+/* GA logo institution data base */
+.GA-logo {
+  width: 150px; /* Adjust the width as needed */
   height: auto; /* Maintain aspect ratio */
   vertical-align: middle; /* Align image in the middle of the nav bar */
 }
@@ -247,7 +253,7 @@ th {
   letter-spacing: 1px;
 }
 tr:nth-child(even) {
-  background-color: #000000;
+  background-color: #252424;
 }
 td {
   padding: 15px;
