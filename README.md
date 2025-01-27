@@ -2,7 +2,7 @@
 This is a managment system for intitutions and university, assisst in ernollment process and tracking the grade.
 
 <img alt="checker board made of black and white" src="./img/intro_page.png">
-<img alt="checker board made of black and white" src="./img/1.png">
+<img alt="checker board made of black and white" src="./img/3.png">
 <img alt="checker board made of black and white" src="./img/2.png">
 
 ## Getting started
