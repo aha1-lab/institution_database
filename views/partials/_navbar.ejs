@@ -1,4 +1,9 @@
 <!-- views/partials/_navbar.ejs -->
+
+<dev id="preloader">
+    <div id="preloader-1"></div>
+</dev>
+
 <nav>
     <!-- Link for the image in the left corner -->
     <img src="/GA pics/GA-logo-.png" alt="GA logo" class="nav-img">
@@ -14,3 +19,13 @@
             <a href="/auth/sign-up">Sign Up</a>
             <% } %>
 </nav>
+
+
+<script>
+    let loader = document.getElementById("preloader");
+    window.addEventListener("load", function(){
+        loader.style.display = "none";
+    });
+</script>
+
+
