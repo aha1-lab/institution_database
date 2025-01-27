@@ -110,3 +110,12 @@ nav a:hover {
   height: auto; /* Maintain aspect ratio */
   vertical-align: middle; /* Align image in the middle of the nav bar */
 }
+
+#preloader{
+  background: #000000 url(loader/preloader.gif) no-repeat center center;
+  background-size: 25%;
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  z-index: 100;
+}
