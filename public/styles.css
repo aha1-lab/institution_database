@@ -297,11 +297,15 @@ textarea{
 .new-enrollments-header{
   margin-top: 90px;
 }
-.select-div{
+select{
   background: rgba(255,255,255,0.021);
-  color: blueviolet;
-  
+  color: rgb(95, 107, 49);
+  border-radius: 9px;
+}  
+select option{
+  background:rgba(255,255,255,0.021) ;
 
+}
 @keyframes spin {
   from {
     transform: rotate(0deg);
@@ -328,4 +332,7 @@ textarea{
   position: fixed;
   z-index: 101;
   animation: spin 5s infinite linear;
+}
+option{
+  background-color: #000000;
 }

@@ -12,14 +12,16 @@
 
 <body>
     <%- include('../partials/_navbar.ejs')%>
-
-    <h1>Enrollment</h1>
+    <div class="new-enrollments-header">
+        <h1>Enrollment</h1>
+    </div>
+    
     <form action="/users/<%=user._id%>/enrollments" method="POST">
         <label for="student">Student Name</label>
         <select class="multiple-selecet"name="student" id="student" multiple>
-            <% students.forEach((student)=>{%>
-                <option value="<%=student._id%>"><%=student.firstName%> <%=student.lastName%></option>
-            <%})%>
+                <% students.forEach((student)=>{%>
+                    <option value="<%=student._id%>" class="option"><%=student.firstName%> <%=student.lastName%></option>
+                <%})%>
         </select>
 
         <label for="tutor">Tutor Name</label>
