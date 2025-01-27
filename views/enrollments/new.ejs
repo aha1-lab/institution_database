@@ -8,7 +8,11 @@
 </head>
 
 <body>
-    <h1>Add new enrollments</h1>
+    <%- include('../partials/_navbar.ejs')%>
+    <div class="new-enrollments-header">
+        <h1>Add new enrollments</h1>
+    </div>
+    
 
     <form action="/enrollments/new" method="POST">
         <div>
@@ -31,9 +35,9 @@
             <input type="number" id="cookingTime" name="cookingTime" required>
         </div>
 
-        <div>
+        <div >
             <label for="difficulty">Difficulty:</label>
-            <select id="difficulty" name="difficulty">
+            <select id="difficulty" name="difficulty" class="select-div">
                 <option value="Easy">Easy</option>
                 <option value="Medium" selected>Medium</option>
                 <option value="Hard">Hard</option>
@@ -46,7 +50,6 @@
         </div>
 
         <button type="submit">Create Recipe</button>
-        <a href="/recipes">Cancel</a>
         </div>
 </body>
 

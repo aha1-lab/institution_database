@@ -13,10 +13,10 @@
 
 <body>
     <%- include('../partials/_navbar.ejs')%>
+    
+    
 
-    <h1>Enrollment 2</h1>
-
-    <form action="/users/<%=user._id%>/enrollments/filter" method="post">
+    <form action="/users/<%=user._id%>/enrollments/filter" method="post" class="filter-form">
         <label for="course">Filter By Course:</label>
         <select name="course" id="course">
             <option value="null"></option>

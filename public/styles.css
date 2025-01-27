@@ -134,6 +134,7 @@ nav a:hover {
 }
 .catalog-header h1 {
   font-size: 2.5rem;
+  margin-top: 100px;
   margin-bottom: 10px;
 }
 /* under header */
@@ -186,6 +187,10 @@ nav a:hover {
   max-width: 500px;
   width: 100%;
   border-top: 5px solid rgb(255, 0, 0);
+}
+/* enrollement index.ejs */
+.filter-form{
+  margin-top: 90px;
 }
 /* person index.ejs */
 .persons-grid {
@@ -265,4 +270,25 @@ td button {
   text-decoration: none;
   border-radius: 4px;
   display: inline-block;
+}
+textarea{
+  width: 100%;
+  padding: 0.8rem;
+  margin-bottom: 1.5rem;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.021);
+  border-radius: 5px;
+  color: white;
+  transition: all 0.3s ease;
+}
+.Add-course-header{
+  margin-top: 90px;
+}
+.new-enrollments-header{
+  margin-top: 90px;
+}
+.select-div{
+  background: rgba(255,255,255,0.021);
+  color: blueviolet;
+  
 }
