@@ -317,7 +317,6 @@ td button {
   display: inline-block;
 }
 
-
 .loader {
   position: fixed;
   top: 0;
@@ -354,3 +353,8 @@ td button {
     transform: rotate(1turn);
   }
 }
+
+.filter-form{
+  margin-top: 90px;
+}
+
