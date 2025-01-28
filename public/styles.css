@@ -137,7 +137,7 @@ nav {
   width: 100%;
   position: fixed;
   top: 0;
-  z-index: 100;
+  z-index: 99;
 }
 
 nav a {
@@ -166,6 +166,7 @@ nav a:hover {
   width: 150px; /* Adjust the width as needed */
   height: auto; /* Maintain aspect ratio */
   vertical-align: middle; /* Align image in the middle of the nav bar */
+  margin-top: 100px;
 }
 /*course index.ejs*/
 .course-list {
@@ -362,7 +363,6 @@ td button {
   }
 }
 
-.filter-form{
+.filter-form {
   margin-top: 90px;
 }
-
