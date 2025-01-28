@@ -1,8 +1,6 @@
 <!-- views/partials/_navbar.ejs -->
 
-<dev id="preloader">
-    <div id="preloader-1"></div>
-</dev>
+<div class="loader"></div>
 
 <nav>
     <!-- Link for the image in the left corner -->
@@ -22,18 +20,19 @@
 
 
 <script>
-    let loader = document.getElementById("preloader");
-    let aElement = document.querySelectorAll("a");
-    let buttonElement = document.querySelectorAll("button");
+    // let loader = document.getElementById("preloader");
+    // window.addEventListener("load", function(){
+    //     loader.style.display = "none";
+    // });
 
-    window.addEventListener("load", function(){
-        loader.style.display = "none";
+    window.addEventListener("load", () => {
+    const loader = document.querySelector(".loader");
+
+    loader.classList.add("loader--hidden");
+
+    loader.addEventListener("transitionend", () => {
+        document.body.removeChild(loader);
     });
-    aElement.addEventListener("click", function(){
-        loader.style.display = "block";
-    });
-    buttonElement.addEventListener("click", function(){
-        loader.style.display = "block";
     });
 </script>
 
