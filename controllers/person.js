@@ -43,8 +43,13 @@ router.post("/",async(req,res)=>{
 router.get("/:personId", async (req,res)=>{
     try {
         const currentPerson = await Person.findById(req.params.personId)
-        const foundEnrollment = await Enrollment.find({student: req.params.personId}).populate("course");
-        console.log(foundEnrollment);
+        let foundEnrollment 
+        if(currentPerson.occupation ==="Student"){
+            foundEnrollment = await Enrollment.find({student: req.params.personId}).populate("course");
+        }else{
+            foundEnrollment = await Enrollment.find({tutor: req.params.personId}).populate("course");
+        }
+        // console.log(foundEnrollment);
 
         res.render("person/showperson.ejs",{
             onePerson : currentPerson,

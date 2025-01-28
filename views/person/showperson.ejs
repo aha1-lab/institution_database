@@ -25,11 +25,17 @@
             </h3>
 
             <h1>List Of courses</h1>
+            <% let old_value = []%>
             <% enrollments.forEach((enrollment)=>{%>
-                <li>
-                    <%=enrollment.course.name%>
-                </li>
-                <%})%>
+                <% if(!old_value.includes(enrollment.course.name)){ %>
+                    <li>
+                        <%=enrollment.course.name%>
+                    </li>
+                    <% old_value.push(enrollment.course.name)%>
+               <% } %>
+            <%})%>
+
+        
         </div>
         <form action="/users/<%=user._id%>/persons/<%=onePerson._id%>?_method=DELETE" method="post">
             <button>Delete person</button>
